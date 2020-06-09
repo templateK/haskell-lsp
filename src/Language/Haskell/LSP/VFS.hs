@@ -281,7 +281,7 @@ getCompletionPrefix pos@(J.Position l c) (VirtualFile _ _ ropetext) =
 
         curLine <- headMaybe $ T.lines $ Rope.toText
                              $ fst $ Rope.splitAtLine 1 $ snd $ Rope.splitAtLine l ropetext
-        let beforePos = T.take c curLine
+        let beforePos = T.take (c + 1) curLine
         curWord <-
             if | T.null beforePos -> Just ""
                | T.last beforePos == ' ' -> Just "" -- don't count abc as the curword in 'abc '
